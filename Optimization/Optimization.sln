@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optimization", "Optimization\Optimization.csproj", "{01934212-5D81-4AE4-9A15-9B7ED07FF21C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optimization", "Optimization\Optimization.csproj", "{498C95D0-0144-43CA-BF63-CF2C432F37B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{01934212-5D81-4AE4-9A15-9B7ED07FF21C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{01934212-5D81-4AE4-9A15-9B7ED07FF21C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{01934212-5D81-4AE4-9A15-9B7ED07FF21C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{01934212-5D81-4AE4-9A15-9B7ED07FF21C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{498C95D0-0144-43CA-BF63-CF2C432F37B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{498C95D0-0144-43CA-BF63-CF2C432F37B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{498C95D0-0144-43CA-BF63-CF2C432F37B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{498C95D0-0144-43CA-BF63-CF2C432F37B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
