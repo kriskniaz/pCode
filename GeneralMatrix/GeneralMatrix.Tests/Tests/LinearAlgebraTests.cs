@@ -32,7 +32,8 @@ namespace DotNetMatrix.Tests
 	[TestFixture()]
 	public class LinearAlgebraTests
 	{
-		GeneralMatrix A,T;
+		GeneralMatrix A = new GeneralMatrix(1, 1);
+		GeneralMatrix T = new GeneralMatrix(1, 1);
 		double[] columnwise = new double[]{1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0};
 		double[][] tvals = {new double[]{1.0, 2.0, 3.0}, new double[]{4.0, 5.0, 6.0}, new double[]{7.0, 8.0, 9.0}, new double[]{10.0, 11.0, 12.0}};
 		int validld = 3; /* leading dimension of intended test Matrices */

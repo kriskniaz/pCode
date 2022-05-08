@@ -13,7 +13,9 @@ namespace DotNetMatrix.Tests
 	[TestFixture()]
 	public class SubMatrixTests
 	{
-		GeneralMatrix M, SUB;
+		GeneralMatrix M = new GeneralMatrix(1, 1);
+		GeneralMatrix SUB = new GeneralMatrix(1,1);
+
 		int[] rowindexset = new int[]{1, 2};
 		int[] badrowindexset = new int[]{1, 3};
 		int[] columnindexset = new int[]{1, 2, 3};
@@ -27,25 +29,25 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_WrongIndecesForSubMatrix1()
 		{
 			int ib = 1, ie = 2, jb = 1, je = 3; /* index ranges for sub GeneralMatrix */
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
 			GeneralMatrix B = new GeneralMatrix(avals);
 
-			M = B.GetMatrix(ib, ie + B.RowDimension + 1, jb, je);
+			Assert.That(()=>B.GetMatrix(ib, ie + B.RowDimension + 1, jb, je), Throws.Exception);
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_WrongIndecesForSubMatrix2()
 		{
 			int ib = 1, ie = 2, jb = 1, je = 3; /* index ranges for sub GeneralMatrix */
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
 			GeneralMatrix B = new GeneralMatrix(avals);
 
-			M = B.GetMatrix(ib, ie, jb, je + B.ColumnDimension + 1);
+			Assert.That(()=> B.GetMatrix(ib, ie, jb, je + B.ColumnDimension + 1), Throws.Exception);
 		}
 
 		[Test()]
@@ -64,7 +66,7 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_BadColumnIndexSet1()
 		{
 			int ib = 1, ie = 2;/* index ranges for sub GeneralMatrix */
@@ -73,12 +75,12 @@ namespace DotNetMatrix.Tests
 
 			GeneralMatrix B = new GeneralMatrix(avals);
 
-			M = B.GetMatrix(ib, ie, badcolumnindexset);
+			Assert.That(()=>B.GetMatrix(ib, ie, badcolumnindexset), Throws.Exception);
 
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_BadColumnIndexSet2()
 		{
 			int ib = 1, ie = 2; /* index ranges for sub GeneralMatrix */
@@ -87,7 +89,7 @@ namespace DotNetMatrix.Tests
 
 			GeneralMatrix B = new GeneralMatrix(avals);
 
-			M = B.GetMatrix(ib, ie + B.RowDimension + 1, columnindexset);
+			Assert.That (()=>B.GetMatrix(ib, ie + B.RowDimension + 1, columnindexset), Throws.Exception);
 
 		}
 
@@ -106,7 +108,7 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_BadRowIndexSet()
 		{
 			int jb = 1, je = 3; /* index ranges for sub GeneralMatrix */
@@ -114,12 +116,12 @@ namespace DotNetMatrix.Tests
 			int[] badrowindexset = new int[]{1, 3};
 
 			GeneralMatrix B = new GeneralMatrix(avals);
-			M = B.GetMatrix(badrowindexset, jb, je);
+			Assert.That(()=>B.GetMatrix(badrowindexset, jb, je), Throws.Exception);
 
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_BadSubIndecesData()
 		{
 
@@ -129,7 +131,7 @@ namespace DotNetMatrix.Tests
 
 			GeneralMatrix B = new GeneralMatrix(avals);
 
-			M = B.GetMatrix(rowindexset, jb, je + B.ColumnDimension + 1);
+			Assert.That(()=>B.GetMatrix(rowindexset, jb, je + B.ColumnDimension + 1), Throws.Exception);
 		}
 
 		[Test()]
@@ -148,7 +150,7 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_BadRowIndexSetGoodColumnIndexSet()
 		{
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
@@ -156,11 +158,11 @@ namespace DotNetMatrix.Tests
 			int[] columnindexset = new int[]{1, 2, 3};
 
 			GeneralMatrix B = new GeneralMatrix(avals);
-			M = B.GetMatrix(badrowindexset, columnindexset);
+			Assert.That(()=>B.GetMatrix(badrowindexset, columnindexset), Throws.Exception);
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_BadColumnIndexSetGoodRowIndexSet()
 		{
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
@@ -168,7 +170,7 @@ namespace DotNetMatrix.Tests
 			int[] badcolumnindexset = new int[]{1, 2, 4};
 
 			GeneralMatrix B = new GeneralMatrix(avals);
-			M = B.GetMatrix(badrowindexset, columnindexset);
+			Assert.That(()=>B.GetMatrix(badrowindexset, columnindexset), Throws.Exception);
 		}
 
 		[Test()]

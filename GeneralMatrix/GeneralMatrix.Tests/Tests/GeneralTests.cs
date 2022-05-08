@@ -16,7 +16,7 @@ namespace DotNetMatrix.Tests
 	public class GeneralTests
 	{
 
-		GeneralMatrix A;
+		GeneralMatrix A = new GeneralMatrix(1, 1);
 		double tmp;
 		double[] columnwise = new double[]{1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0};
 		double[] rowwise = new double[]{1.0, 4.0, 7.0, 10.0, 2.0, 5.0, 8.0, 11.0, 3.0, 6.0, 9.0, 12.0};
@@ -243,21 +243,21 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.ArgumentException), ExpectedMessage = "Array length must be a multiple of m.")]
+		//ExpectedMessage = "Array length must be a multiple of m."
 		public void Negative_InvalidLenghtToConstructor()
 		{
 			double[] columnwise = new double[]{1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0};
 			int invalidld = 5; /* should trigger bad shape for construction with val */
-			A = new GeneralMatrix(columnwise, invalidld);
+			Assert.That(()=> new GeneralMatrix(columnwise, invalidld), Throws.ArgumentException);
 			
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.ArgumentException), ExpectedMessage = "All rows must have the same length.")]
+		//ExpectedMessage = "All rows must have the same length.")]
 		public void Negative_InvalidRaggedArrayToConstructor()
 		{
 			double[][] rvals = {new double[]{1.0, 4.0, 7.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
-			A = new GeneralMatrix(rvals);
+			Assert.That( ()=>new GeneralMatrix(rvals), Throws.ArgumentException);
 		}
 
 		/// <summary>
@@ -356,21 +356,21 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Index was outside the bounds of the array.")]
+		//ExpectedMessage = "Index was outside the bounds of the array."
 		public void Negative_GetElementRow()
 		{
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
 			GeneralMatrix B = new GeneralMatrix(avals);
-			tmp = B.GetElement(B.RowDimension, B.ColumnDimension - 1);
+			Assert.That(()=>B.GetElement(B.RowDimension, B.ColumnDimension - 1), Throws.Exception);
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Index was outside the bounds of the array.")]
+		//ExpectedMessage = "Index was outside the bounds of the array."
 		public void Negative_GetElementColumn()
 		{
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
 			GeneralMatrix B = new GeneralMatrix(avals);
-			tmp = B.GetElement(B.RowDimension-1, B.ColumnDimension);
+			Assert.That(()=>B.GetElement(B.RowDimension-1, B.ColumnDimension), Throws.Exception);
 		}
 
 		[Test()]

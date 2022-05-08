@@ -22,7 +22,13 @@ namespace DotNetMatrix.Tests
 	[TestFixture()]
 	public class ArrayTests
 	{
-		GeneralMatrix A,R,S,Z,O;
+		//declaring and creting test variables, to be redefined in the init method
+		GeneralMatrix A = new GeneralMatrix(1,1);
+		GeneralMatrix R = new GeneralMatrix(1, 1);
+		GeneralMatrix S = new GeneralMatrix(1, 1);
+		GeneralMatrix Z = new GeneralMatrix(1, 1);
+		GeneralMatrix O = new GeneralMatrix(1, 1);
+
 		double[] columnwise = new double[]{1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0};
 		int nonconformld = 4; /* leading dimension which is valid, but nonconforming */
 		int validld = 3; /* leading dimension of intended test Matrices */
@@ -42,11 +48,11 @@ namespace DotNetMatrix.Tests
 		/// so the substraction must fail
 		/// </summary>
 		[Test()]
-		[ExpectedException(typeof(System.ArgumentException),ExpectedMessage="GeneralMatrix dimensions must agree.")]
+		//ExpectedMessage="GeneralMatrix dimensions must agree
 		public void Negative_Substract()
 		{
 			S = new GeneralMatrix(columnwise, nonconformld);
-			S = A.Subtract(S);
+			Assert.That(()=>A.Subtract(S), Throws.ArgumentException);
 		}
 
 		[Test()]
@@ -66,10 +72,11 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-		[ExpectedException(typeof(System.ArgumentException),ExpectedMessage="GeneralMatrix dimensions must agree.")]
+
+		//ExpectedMessage="GeneralMatrix dimensions must agree"
 		public void Negative_SubstractEquals()
 		{
-			A.SubtractEquals(S);
+			Assert.That(()=>A.SubtractEquals(S), Throws.ArgumentException);
 		}
 
 		[Test()]
@@ -81,10 +88,10 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.ArgumentException), ExpectedMessage = "GeneralMatrix dimensions must agree.")]
+		//GeneralMatrix dimensions must agree.
 		public void Negative_AddMatrix()
 		{
-			A.Add(S);
+			Assert.That(()=> A.Add(S), Throws.ArgumentException);
 		}
 
 		[Test()]
@@ -95,11 +102,13 @@ namespace DotNetMatrix.Tests
 			Assert.IsTrue(GeneralTests.Check(C.Add(B), A));
 		}
 
+	
 		[Test()]
-        [ExpectedException(typeof(System.ArgumentException), ExpectedMessage = "GeneralMatrix dimensions must agree.")]
+		//"GeneralMatrix dimensions must agree."
 		public void Negative_AddEquals()
 		{
-			A.AddEquals(S);
+
+				Assert.That( () => A.AddEquals(S), Throws.ArgumentException);
 		}
 
 		[Test()]
@@ -122,10 +131,10 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.ArgumentException), ExpectedMessage = "GeneralMatrix dimensions must agree.")]
+		//"GeneralMatrix dimensions must agree."
 		public void Negative_LeftDivide()
 		{
-			S = A.ArrayLeftDivide(S);
+			Assert.That(()=>A.ArrayLeftDivide(S), Throws.ArgumentException);
 		}
 
 		[Test()]
@@ -138,10 +147,10 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.ArgumentException), ExpectedMessage = "GeneralMatrix dimensions must agree.")]
+		//"GeneralMatrix dimensions must agree."
 		public void Negative_LeftDivideEquals()
 		{
-			A.ArrayLeftDivideEquals(S);
+			Assert.That(()=> A.ArrayLeftDivideEquals(S), Throws.ArgumentException);
 		}
 
 		[Test()]
@@ -151,12 +160,12 @@ namespace DotNetMatrix.Tests
 			A.ArrayLeftDivideEquals(R);
 			Assert.IsTrue(GeneralTests.Check(A,O));
 		}
-
+		
 		[Test()]
-        [ExpectedException(typeof(System.ArgumentException), ExpectedMessage = "GeneralMatrix dimensions must agree.")]
+		//"GeneralMatrix dimensions must agree."
 		public void Negative_RightDivide()
 		{
-			A.ArrayRightDivide(S);
+			Assert.That(()=>A.ArrayRightDivide(S), Throws.ArgumentException);
 		}
 
 		[Test()]
@@ -168,10 +177,10 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.ArgumentException), ExpectedMessage = "GeneralMatrix dimensions must agree.")]
+		//"GeneralMatrix dimensions must agree."
 		public void Negative_RightDivideEquals()
 		{
-			A.ArrayRightDivideEquals(S);
+			Assert.That(()=>A.ArrayRightDivideEquals(S), Throws.ArgumentException);
 		}
 
 		[Test()]
@@ -183,10 +192,10 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.ArgumentException), ExpectedMessage = "GeneralMatrix dimensions must agree.")]
+		//ExpectedMessage = "GeneralMatrix dimensions must agree."
 		public void Negative_ArrayMultiply()
 		{
-			S = A.ArrayMultiply(S);
+			Assert.That(()=>A.ArrayMultiply(S), Throws.ArgumentException);
 		}
 
 		[Test()]
@@ -199,10 +208,10 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.ArgumentException), ExpectedMessage = "GeneralMatrix dimensions must agree.")]
+		//ExpectedMessage = "GeneralMatrix dimensions must agree."
 		public void Negative_ArrayMultiplyEquals()
 		{
-			A.ArrayMultiplyEquals(S);
+			Assert.That(()=>A.ArrayMultiplyEquals(S), Throws.ArgumentException);
 		}
 
 

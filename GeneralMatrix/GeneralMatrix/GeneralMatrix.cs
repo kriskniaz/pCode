@@ -260,13 +260,12 @@ namespace DotNetMatrix
         {
             get{
                 XmlDocument aDocument = new XmlDocument();
-                XmlElement columnEl = null;
-                XmlElement mainElement = null;
-                XmlElement valueEl = null;
+                XmlElement columnEl = aDocument.CreateElement(string.Format("row"));
+				XmlElement mainElement = aDocument.CreateElement("Data");
+				XmlElement valueEl = aDocument.CreateElement(string.Format("row"));
 
-                mainElement = aDocument.CreateElement("Data");
 
-                for (int i = 0; i < this.ColumnDimension; i++)
+				for (int i = 0; i < this.ColumnDimension; i++)
                 {
                     columnEl = aDocument.CreateElement(string.Format("row"));
 

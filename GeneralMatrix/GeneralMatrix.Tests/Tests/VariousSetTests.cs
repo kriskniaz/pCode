@@ -32,18 +32,18 @@ namespace DotNetMatrix.Tests
 
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Index was outside the bounds of the array.")]
+		//ExpectedMessage = "Index was outside the bounds of the array."
 		public void BadSetValue1()
 		{
 
-			B.SetElement(B.RowDimension, B.ColumnDimension - 1, 0.0);
+			Assert.That( ()=> B.SetElement(B.RowDimension, B.ColumnDimension - 1, 0.0), Throws.Exception);
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Index was outside the bounds of the array.")]
+		//ExpectedMessage = "Index was outside the bounds of the array."
 		public void BadSetValue2()
 		{
-			B.SetElement(B.RowDimension - 1, B.ColumnDimension, 0.0);
+			Assert.That( ()=> B.SetElement(B.RowDimension - 1, B.ColumnDimension, 0.0), Throws.Exception);
 		}
 
 		[Test()]
@@ -55,10 +55,10 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_BadSetMatrix1()
 		{
-			B.SetMatrix(ib, ie + B.RowDimension + 1, jb, je, M);
+			Assert.That( ()=> B.SetMatrix(ib, ie + B.RowDimension + 1, jb, je, M), Throws.Exception);
 		}
 		
 		[Test()]
@@ -77,17 +77,17 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_BadSetMatrix2()
 		{
-			B.SetMatrix(ib, ie + B.RowDimension + 1, columnindexset, M);
+			Assert.That(()=> B.SetMatrix(ib, ie + B.RowDimension + 1, columnindexset, M), Throws.Exception);
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_BadSetMatrix3()
 		{
-			B.SetMatrix(ib, ie, badcolumnindexset, M);
+			Assert.That(()=>B.SetMatrix(ib, ie, badcolumnindexset, M), Throws.Exception);
 		}
 
 		[Test()]
@@ -110,17 +110,17 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_BadSetMatrix4()
 		{
-			B.SetMatrix(rowindexset, jb, je + B.ColumnDimension + 1, M);
+			Assert.That(()=> B.SetMatrix(rowindexset, jb, je + B.ColumnDimension + 1, M), Throws.Exception);
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices")]
 		public void Negative_BadSetMatrix5()
 		{
-			B.SetMatrix(badrowindexset, jb, je, M);
+			Assert.That(()=> B.SetMatrix(badrowindexset, jb, je, M), Throws.Exception);
 		}
 
 
@@ -132,17 +132,17 @@ namespace DotNetMatrix.Tests
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_BadSetMatrix6()
 		{
-			B.SetMatrix(rowindexset, badcolumnindexset, M);
+			Assert.That( ()=> B.SetMatrix(rowindexset, badcolumnindexset, M), Throws.Exception);
 		}
 
 		[Test()]
-        [ExpectedException(typeof(System.IndexOutOfRangeException), ExpectedMessage = "Submatrix indices")]
+		//ExpectedMessage = "Submatrix indices"
 		public void Negative_BadSetMatrix7()
 		{
-			B.SetMatrix(badrowindexset, columnindexset, M);
+			Assert.That(()=> B.SetMatrix(badrowindexset, columnindexset, M), Throws.Exception);
 		}
 
 		[Test()]
