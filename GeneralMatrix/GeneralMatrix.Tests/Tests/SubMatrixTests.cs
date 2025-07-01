@@ -61,7 +61,7 @@ namespace DotNetMatrix.Tests
 			M = B.GetMatrix(ib, ie, jb, je);
 			SUB = new GeneralMatrix(subavals);
 
-			Assert.IsTrue(GeneralTests.Check(SUB, M));
+			Assert.That(GeneralTests.Check(SUB, M), Is.True);
 
 		}
 
@@ -104,7 +104,7 @@ namespace DotNetMatrix.Tests
 			M = B.GetMatrix(ib, ie, columnindexset);
 			SUB = new GeneralMatrix(subavals);
 
-			Assert.IsTrue(GeneralTests.Check(SUB, M));
+			Assert.That(GeneralTests.Check(SUB, M), Is.True);
 		}
 
 		[Test()]
@@ -146,7 +146,7 @@ namespace DotNetMatrix.Tests
 			M = B.GetMatrix(rowindexset, jb, je);
 			SUB = new GeneralMatrix(subavals);
 
-			Assert.IsTrue(GeneralTests.Check(SUB, M));
+			Assert.That(GeneralTests.Check(SUB, M), Is.True);
 		}
 
 		[Test()]
@@ -185,7 +185,7 @@ namespace DotNetMatrix.Tests
 			M = B.GetMatrix(rowindexset, columnindexset);
 			SUB = new GeneralMatrix(subavals);
 
-			Assert.IsTrue(GeneralTests.Check(SUB, M));
+			Assert.That(GeneralTests.Check(SUB, M), Is.True);
 		}
 	}
 }

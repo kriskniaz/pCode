@@ -109,7 +109,7 @@ namespace Net.Kniaz.LMA.Tests
 
 			for (int i=0; i<a.Length; i++)
 			{
-				Assert.IsTrue(System.Math.Abs(algorithm.Parameters[i]-a[i])<0.0001);
+				Assert.That(System.Math.Abs(algorithm.Parameters[i]-a[i])<0.0001);
 				Trace.WriteLine("Parameter" + i.ToString() + " " + algorithm.Parameters[i].ToString());
 			}
 

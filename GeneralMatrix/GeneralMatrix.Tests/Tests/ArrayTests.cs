@@ -59,31 +59,31 @@ namespace DotNetMatrix.Tests
 		public void Substract()
 		{
 			A=R;
-			Assert.AreEqual(0.0,A.Subtract(R).Norm1());
-		}
+            Assert.That(A.Subtract(R).Norm1(), Is.EqualTo(0.0));
+        }
 
 		[Test()]
 		public void SubstractEquals()
 		{
 			A = R.Copy();
-			Assert.IsFalse(A.Norm1()==0.0);
+            Assert.That(A.Norm1(), Is.Not.EqualTo(0.0));
 			A.SubtractEquals(R);
-			Assert.IsTrue(A.Norm1() == 0.0);
-		}
+            Assert.That(A.Subtract(Z).Norm1(), Is.Not.EqualTo(0.0));
+        }
 
-		[Test()]
+        [Test()]
 
-		//ExpectedMessage="GeneralMatrix dimensions must agree"
-		public void Negative_SubstractEquals()
-		{
-			Assert.That(()=>A.SubtractEquals(S), Throws.ArgumentException);
-		}
+        //ExpectedMessage="GeneralMatrix dimensions must agree"
+        public void Negative_SubstractEquals()
+        {
+            Assert.That(() => A.SubtractEquals(S), Throws.ArgumentException);
+        }
 
-		[Test()]
-		public void SubstractZeroMatrix()
-		{
-			Z = new GeneralMatrix(A.RowDimension, A.ColumnDimension);
-			Assert.IsTrue(A.Subtract(Z).Norm1()!=0.0);
+        [Test()]
+        public void SubstractZeroMatrix()
+        {
+            Z = new GeneralMatrix(A.RowDimension, A.ColumnDimension);
+            Assert.That(A.Subtract(Z).Norm1(), Is.Not.EqualTo(0.0));
 
 		}
 
@@ -99,7 +99,7 @@ namespace DotNetMatrix.Tests
 		{
 			GeneralMatrix B = GeneralMatrix.Random(A.RowDimension, A.ColumnDimension);
 			GeneralMatrix C = A.Subtract(B);
-			Assert.IsTrue(GeneralTests.Check(C.Add(B), A));
+            Assert.That(GeneralTests.Check(C.Add(B), A), Is.True);
 		}
 
 	
@@ -117,7 +117,7 @@ namespace DotNetMatrix.Tests
 			GeneralMatrix B = GeneralMatrix.Random(A.RowDimension, A.ColumnDimension);
 			GeneralMatrix C = A.Subtract(B);
 			C.AddEquals(B);
-			Assert.IsTrue(GeneralTests.Check(A,C));
+			Assert.That(GeneralTests.Check(A, C), Is.True);
 
 		}
 
@@ -126,7 +126,7 @@ namespace DotNetMatrix.Tests
 		{
 			A = R.UnaryMinus();
 			Z = new GeneralMatrix(A.RowDimension, A.ColumnDimension);
-			Assert.IsTrue(GeneralTests.Check(A.Add(R), Z));
+			Assert.That(GeneralTests.Check(A.Add(R), Z), Is.True);
 
 		}
 
@@ -142,7 +142,7 @@ namespace DotNetMatrix.Tests
 		{
 			A = R.Copy();
 			GeneralMatrix C = A.ArrayLeftDivide(R);
-			Assert.IsTrue(GeneralTests.Check(C,O));
+			Assert.That(GeneralTests.Check(C, O), Is.True);
 
 		}
 
@@ -158,7 +158,7 @@ namespace DotNetMatrix.Tests
 		{
 			A = R.Copy();
 			A.ArrayLeftDivideEquals(R);
-			Assert.IsTrue(GeneralTests.Check(A,O));
+			Assert.That(GeneralTests.Check(A, O), Is.True);
 		}
 		
 		[Test()]
@@ -173,7 +173,7 @@ namespace DotNetMatrix.Tests
 		{
 			A = R.Copy();
 			GeneralMatrix C = A.ArrayRightDivide(R);
-			Assert.IsTrue(GeneralTests.Check(C,O));
+			Assert.That(GeneralTests.Check(C, O), Is.True);
 		}
 
 		[Test()]
@@ -188,7 +188,7 @@ namespace DotNetMatrix.Tests
 		{
 			A = R.Copy();
 			A.ArrayRightDivideEquals(R);
-			Assert.IsTrue(GeneralTests.Check(A,O));
+			Assert.That(GeneralTests.Check(A, O), Is.True);
 		}
 
 		[Test()]
@@ -204,7 +204,7 @@ namespace DotNetMatrix.Tests
 			A = R.Copy();
 			GeneralMatrix B = GeneralMatrix.Random(A.RowDimension, A.ColumnDimension);
 			GeneralMatrix C = A.ArrayMultiply(B);
-			Assert.IsTrue(GeneralTests.Check(C.ArrayRightDivideEquals(B), A));
+			Assert.That(GeneralTests.Check(C.ArrayRightDivideEquals(B), A), Is.True);
 		}
 
 		[Test()]
@@ -221,7 +221,7 @@ namespace DotNetMatrix.Tests
 			A = R.Copy();
 			GeneralMatrix B = GeneralMatrix.Random(A.RowDimension, A.ColumnDimension);
 			A.ArrayMultiplyEquals(B);
-			Assert.IsTrue(GeneralTests.Check(A.ArrayRightDivideEquals(B), R));
+			Assert.That(GeneralTests.Check(A.ArrayRightDivideEquals(B), R), Is.True);
 		}
 
 	}

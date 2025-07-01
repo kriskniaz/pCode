@@ -53,21 +53,21 @@ namespace DotNetMatrix.Tests
 		public void Transpose1()
 		{
 			T = A.Transpose();
-			Assert.IsTrue(GeneralTests.Check(A.Transpose(), T));
+			Assert.That(GeneralTests.Check(A.Transpose(), T), Is.True);
 		}
 
 		[Test()]
 		public void Transpose2()
 		{
 			A.Transpose();
-			Assert.IsTrue(GeneralTests.Check(A.Norm1(), columnsummax));
+			Assert.That(GeneralTests.Check(A.Norm1(), columnsummax), Is.True);
 		}
 
 		[Test()]
 		public void Transpose3()
 		{
 			A.Transpose();
-			Assert.IsTrue(GeneralTests.Check(A.NormInf(), rowsummax));
+			Assert.That(GeneralTests.Check(A.NormInf(), rowsummax), Is.True);
 
 		}
 
@@ -75,7 +75,7 @@ namespace DotNetMatrix.Tests
 		public void Transpose4()
 		{
 			A.Transpose();
-			Assert.IsTrue(GeneralTests.Check(A.NormF(), System.Math.Sqrt(sumofsquares)));
+			Assert.That(GeneralTests.Check(A.NormF(), System.Math.Sqrt(sumofsquares)), Is.True);
 
 		}
 
@@ -83,7 +83,7 @@ namespace DotNetMatrix.Tests
 		public void Transpose5()
 		{
 			A.Transpose();
-			Assert.IsTrue(GeneralTests.Check(A.Trace(), sumofdiagonals));
+			Assert.That(GeneralTests.Check(A.Trace(), sumofdiagonals), Is.True);
 
 		}
 
@@ -92,7 +92,7 @@ namespace DotNetMatrix.Tests
 		{
 			A.Transpose();
 
-			Assert.IsTrue(GeneralTests.Check(A.GetMatrix(0, A.RowDimension - 1, 0, A.RowDimension - 1).Determinant(), 0.0));
+			Assert.That(GeneralTests.Check(A.GetMatrix(0, A.RowDimension - 1, 0, A.RowDimension - 1).Determinant(), 0.0), Is.True);
 		}
 
 		[Test()]
@@ -100,14 +100,14 @@ namespace DotNetMatrix.Tests
 		{
 			double[][] square = {new double[]{166.0, 188.0, 210.0}, new double[]{188.0, 214.0, 240.0}, new double[]{210.0, 240.0, 270.0}};
 			GeneralMatrix sq  = new GeneralMatrix(square);
-			Assert.IsTrue(GeneralTests.Check(A.Multiply(A.Transpose()), sq));
+			Assert.That(GeneralTests.Check(A.Multiply(A.Transpose()), sq), Is.True);
 		}
 
 		[Test()]
 		public void MultiplyZero()
 		{
 			GeneralMatrix Z = new GeneralMatrix(A.RowDimension, A.ColumnDimension);
-			Assert.IsTrue(GeneralTests.Check(A.Multiply(0.0),Z));
+			Assert.That(GeneralTests.Check(A.Multiply(0.0), Z), Is.True);
 		}
 
 		[Test()]
@@ -117,7 +117,7 @@ namespace DotNetMatrix.Tests
 
 			QRDecomposition QR = A.QRD();
 			GeneralMatrix R = QR.R;
-			Assert.IsTrue(GeneralTests.Check(A, QR.Q.Multiply(R)));
+			Assert.That(GeneralTests.Check(A, QR.Q.Multiply(R)), Is.True);
 		}
 
 		[Test()]
@@ -125,7 +125,7 @@ namespace DotNetMatrix.Tests
 		{
 			GeneralMatrix A = new GeneralMatrix(columnwise, 4);
 			SingularValueDecomposition SVD = A.SVD();
-			Assert.IsTrue(GeneralTests.Check(A, SVD.GetU().Multiply(SVD.S.Multiply(SVD.GetV().Transpose()))));
+			Assert.That(GeneralTests.Check(A, SVD.GetU().Multiply(SVD.S.Multiply(SVD.GetV().Transpose()))), Is.True);
 		}
 
 		[Test()]
@@ -133,7 +133,7 @@ namespace DotNetMatrix.Tests
 		{
 			double[][] rankdef = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
 			GeneralMatrix def = new GeneralMatrix(rankdef);
-			Assert.IsTrue(GeneralTests.Check(def.Rank(), System.Math.Min(def.RowDimension, def.ColumnDimension) - 1));
+			Assert.That(GeneralTests.Check(def.Rank(), System.Math.Min(def.RowDimension, def.ColumnDimension) - 1), Is.True);
 		}
 
 		[Test()]
@@ -143,7 +143,7 @@ namespace DotNetMatrix.Tests
 			GeneralMatrix B = new GeneralMatrix(condmat);
 			SingularValueDecomposition SVD = B.SVD();
 			double[] singularvalues = SVD.SingularValues;
-			Assert.IsTrue(GeneralTests.Check(B.Condition(), singularvalues[0] / singularvalues[System.Math.Min(B.RowDimension, B.ColumnDimension) - 1]));
+			Assert.That(GeneralTests.Check(B.Condition(), singularvalues[0] / singularvalues[System.Math.Min(B.RowDimension, B.ColumnDimension) - 1]), Is.True);
 		}
 
 		[Test()]
@@ -154,7 +154,7 @@ namespace DotNetMatrix.Tests
 			A = A.GetMatrix(0, n - 1, 0, n - 1);
 			A.SetElement(0, 0, 0.0);
 			LUDecomposition LU = A.LUD();
-			Assert.IsTrue(GeneralTests.Check(A.GetMatrix(LU.Pivot, 0, n - 1), LU.L.Multiply(LU.U)));
+			Assert.That(GeneralTests.Check(A.GetMatrix(LU.Pivot, 0, n - 1), LU.L.Multiply(LU.U)), Is.True);
 		}
 
 		[Test()]
@@ -162,7 +162,7 @@ namespace DotNetMatrix.Tests
 		{
 			GeneralMatrix r = GeneralMatrix.Random(4,4);
 			GeneralMatrix iR = r.Inverse();
-			Assert.IsTrue(GeneralTests.Check(r.Multiply(iR),GeneralMatrix.Identity(4,4)));
+			Assert.That(GeneralTests.Check(r.Multiply(iR), GeneralMatrix.Identity(4, 4)), Is.True);
 
 		}
 
@@ -175,7 +175,7 @@ namespace DotNetMatrix.Tests
 			GeneralMatrix o = new GeneralMatrix(sub.RowDimension, 1, 1.0);
 			GeneralMatrix sol = new GeneralMatrix(sqSolution);
 			GeneralMatrix sq = sub.GetMatrix(0, sub.RowDimension - 1, 0, sub.RowDimension - 1);
-			Assert.IsTrue(GeneralTests.Check(sq.Solve(sol), o));
+			Assert.That(GeneralTests.Check(sq.Solve(sol), o), Is.True);
 		}
 
 		[Test()]
@@ -185,7 +185,7 @@ namespace DotNetMatrix.Tests
 			GeneralMatrix A = new GeneralMatrix(pvals);
 			CholeskyDecomposition chol = A.chol();
 			GeneralMatrix L = chol.GetL();
-			Assert.IsTrue(GeneralTests.Check(A, L.Multiply(L.Transpose())));
+			Assert.That(GeneralTests.Check(A, L.Multiply(L.Transpose())), Is.True);
 
 		}
 
@@ -196,7 +196,7 @@ namespace DotNetMatrix.Tests
 			GeneralMatrix A = new GeneralMatrix(pvals);
 			CholeskyDecomposition chol = A.chol();
 			GeneralMatrix X = chol.Solve(GeneralMatrix.Identity(3, 3));
-			Assert.IsTrue(GeneralTests.Check(A.Multiply(X), GeneralMatrix.Identity(3, 3)));
+			Assert.That(GeneralTests.Check(A.Multiply(X), GeneralMatrix.Identity(3, 3)), Is.True);
 
 		}
 
@@ -208,7 +208,7 @@ namespace DotNetMatrix.Tests
 			EigenvalueDecomposition Eig = A.Eigen();
 			GeneralMatrix D = Eig.D;
 			GeneralMatrix V = Eig.GetV();
-			Assert.IsTrue(GeneralTests.Check(A.Multiply(V), V.Multiply(D)));
+			Assert.That(GeneralTests.Check(A.Multiply(V), V.Multiply(D)), Is.True);
 
 
 		}
@@ -221,7 +221,7 @@ namespace DotNetMatrix.Tests
 			EigenvalueDecomposition Eig = A.Eigen();
 			GeneralMatrix D = Eig.D;
 			GeneralMatrix V = Eig.GetV();
-			Assert.IsTrue(GeneralTests.Check(A.Multiply(V), V.Multiply(D)));
+			Assert.That(GeneralTests.Check(A.Multiply(V), V.Multiply(D)), Is.True);
 
 		}
 

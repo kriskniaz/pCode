@@ -157,90 +157,87 @@ namespace DotNetMatrix.Tests
 		#endregion
 
 		[Test()]
-		public void TestConstructor_mns()
-		{
-			int m=2;
-			int n=3;
-			int i,j;
-			double s=2.0;
-			bool _equal = true;
+        public void TestConstructor_mns()
+        {
+            int m = 2;
+            int n = 3;
+            int i, j;
+            double s = 2.0;
+            bool _equal = true;
 
-			GeneralMatrix _gm = new GeneralMatrix(m,n,s);
-			GeneralMatrix _ngm = new GeneralMatrix(PrepArray(m,n,s));
-			double [][]A1 = _gm.ArrayCopy;
-			double [][]A2 = _ngm.ArrayCopy;
+            GeneralMatrix _gm = new GeneralMatrix(m, n, s);
+            GeneralMatrix _ngm = new GeneralMatrix(PrepArray(m, n, s));
+            double[][] A1 = _gm.ArrayCopy;
+            double[][] A2 = _ngm.ArrayCopy;
 
-			for (i=0; i<m; i++)
-			{
-				for (j=0; j<n; j++)
-				{
+            for (i = 0; i < m; i++)
+            {
+                for (j = 0; j < n; j++)
+                {
+                    if (A1[i][j] != A2[i][j])
+                    {
+                        _equal = false;
+                        break;
+                    }
+                }
+            }
 
-					if (A1[i][j]!= A2[i][j])
-					{
-						_equal=false;
-						break;
-					}
-				}
-			}
-			
-			Assert.IsTrue(_equal);
-
-		}
+            Assert.That(_equal, Is.True); // Replace Assert.IsTrue with Assert.That
+        }
 
 		[Test()]
-		public void TestTranspose()
-		{
-			GeneralMatrix _gm = new GeneralMatrix(2,2);
-			_gm.SetElement(0,0,1);
-			_gm.SetElement(0,1,2);
-			_gm.SetElement(1,0,3);
-			_gm.SetElement(1,1,4);
-			GeneralMatrix _ngm = _gm.Transpose();
+        public void TestTranspose()
+        {
+            GeneralMatrix _gm = new GeneralMatrix(2, 2);
+            _gm.SetElement(0, 0, 1);
+            _gm.SetElement(0, 1, 2);
+            _gm.SetElement(1, 0, 3);
+            _gm.SetElement(1, 1, 4);
+            GeneralMatrix _ngm = _gm.Transpose();
 
-			Assert.AreEqual(1,0,2);
-
-		}
+            Assert.That(_ngm.GetElement(0, 0), Is.EqualTo(1));
+            Assert.That(_ngm.GetElement(0, 1), Is.EqualTo(3));
+            Assert.That(_ngm.GetElement(1, 0), Is.EqualTo(2));
+            Assert.That(_ngm.GetElement(1, 1), Is.EqualTo(4));
+        }
 
 		/// <summary>
 		/// Tests Norm1 - returns max sum of column
 		/// </summary>
 		[Test()]
-		public void TestNorm1()
-		{
-			GeneralMatrix _gm = new GeneralMatrix(2,2);
-			_gm.SetElement(0,0,1);
-			_gm.SetElement(0,1,2);
-			_gm.SetElement(1,0,3);
-			_gm.SetElement(1,1,4);
+        public void TestNorm1()
+        {
+            GeneralMatrix _gm = new GeneralMatrix(2, 2);
+            _gm.SetElement(0, 0, 1);
+            _gm.SetElement(0, 1, 2);
+            _gm.SetElement(1, 0, 3);
+            _gm.SetElement(1, 1, 4);
 
-			Assert.AreEqual(6,_gm.Norm1());
-
-
-		}
+            Assert.That(_gm.Norm1(), Is.EqualTo(6)); // Replaced Assert.AreEqual with Assert.That
+        }
 
 		/// <summary>
 		/// Tests solving linear equation.
 		/// The solution vector is [1,-2]
 		/// </summary>
 		[Test()]
-		public void TestSolve()
-		{
-			GeneralMatrix _ls = new GeneralMatrix(2,2);
-			_ls.SetElement(0,0,1);
-			_ls.SetElement(0,1,2);
-			_ls.SetElement(1,0,3);
-			_ls.SetElement(1,1,4);
+        public void TestSolve()
+        {
+            GeneralMatrix _ls = new GeneralMatrix(2, 2);
+            _ls.SetElement(0, 0, 1);
+            _ls.SetElement(0, 1, 2);
+            _ls.SetElement(1, 0, 3);
+            _ls.SetElement(1, 1, 4);
 
-			GeneralMatrix _rs = new GeneralMatrix(2,1);
-			_rs.SetElement(0,0,-3);
-			_rs.SetElement(1,0,-5);
+            GeneralMatrix _rs = new GeneralMatrix(2, 1);
+            _rs.SetElement(0, 0, -3);
+            _rs.SetElement(1, 0, -5);
 
-			GeneralMatrix _solution = _ls.Solve(_rs);
+            GeneralMatrix _solution = _ls.Solve(_rs);
 
-			Assert.AreEqual(_solution.GetElement(0,0),1);
-			Assert.AreEqual(_solution.GetElement(1,0),-2);
-
-		}
+            Assert.That(_solution.GetElement(0, 0), Is.EqualTo(1)); // Replaced Assert.AreEqual with Assert.That
+            Assert.That(_solution.GetElement(1, 0), Is.EqualTo(-2)); // Replaced Assert.AreEqual with Assert.That
+        }
 
 		[Test()]
 		//ExpectedMessage = "Array length must be a multiple of m."
@@ -284,7 +281,7 @@ namespace DotNetMatrix.Tests
 			B = GeneralMatrix.Create(avals);
 			tmp = B.GetElement(0, 0);
 			avals[0][0] = 0.0;
-			Assert.IsTrue(tmp==B.GetElement(0, 0));
+			Assert.That(tmp == B.GetElement(0, 0), Is.True);
 		}
 
 		[Test()]
@@ -295,7 +292,7 @@ namespace DotNetMatrix.Tests
 
 			GeneralMatrix K = GeneralMatrix.Identity(3,4);
 
-			Assert.IsTrue(I.Norm1()==K.Norm1()&&I.Norm1()==1);
+			Assert.That(I.Norm1() == K.Norm1() && I.Norm1() == 1, Is.True);
 
 		}
 
@@ -305,7 +302,7 @@ namespace DotNetMatrix.Tests
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
 			GeneralMatrix B = new GeneralMatrix(avals);
 
-			Assert.AreEqual(3,B.RowDimension);
+			Assert.That(B.RowDimension, Is.EqualTo(3));
 		}
 
 		[Test()]
@@ -314,7 +311,7 @@ namespace DotNetMatrix.Tests
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
 			GeneralMatrix B = new GeneralMatrix(avals);
 
-			Assert.AreEqual(4,B.ColumnDimension);
+			Assert.That(B.ColumnDimension, Is.EqualTo(4));
 		}
 
 		[Test()]
@@ -323,7 +320,7 @@ namespace DotNetMatrix.Tests
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
 			GeneralMatrix B = new GeneralMatrix(avals);
 			double[][] barray = B.Array;
-			Assert.AreEqual(barray,avals);
+			Assert.That(avals, Is.EqualTo(barray));
 
 		}
 
@@ -333,7 +330,7 @@ namespace DotNetMatrix.Tests
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
 			GeneralMatrix B = new GeneralMatrix(avals);
 			double[][] barray = B.ArrayCopy;
-			Assert.IsTrue(Check(avals,barray));
+			Assert.That(Check(avals, barray), Is.True);
 		}
 
 		[Test()]
@@ -342,7 +339,7 @@ namespace DotNetMatrix.Tests
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
 			GeneralMatrix B = new GeneralMatrix(avals);
 			double[] bpacked = B.ColumnPackedCopy;
-			Assert.IsTrue(Check(bpacked,columnwise));
+			Assert.That(Check(bpacked, columnwise), Is.True);
 		}
 
 		[Test()]
@@ -351,7 +348,7 @@ namespace DotNetMatrix.Tests
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
 			GeneralMatrix B = new GeneralMatrix(avals);
 			double[] bpacked = B.RowPackedCopy;
-			Assert.IsTrue(Check(bpacked,rowwise));
+			Assert.That(Check(bpacked, rowwise), Is.True);
 
 		}
 
@@ -378,7 +375,7 @@ namespace DotNetMatrix.Tests
 		{
 			double[][] avals = {new double[]{1.0, 4.0, 7.0, 10.0}, new double[]{2.0, 5.0, 8.0, 11.0}, new double[]{3.0, 6.0, 9.0, 12.0}};
 			GeneralMatrix B = new GeneralMatrix(avals);
-			Assert.AreEqual(B.GetElement(B.RowDimension-1,B.ColumnDimension-1),avals[B.RowDimension-1][B.ColumnDimension-1]);
+			Assert.That(avals[B.RowDimension - 1][B.ColumnDimension - 1], Is.EqualTo(B.GetElement(B.RowDimension - 1, B.ColumnDimension - 1)));
 		}
 
 	}

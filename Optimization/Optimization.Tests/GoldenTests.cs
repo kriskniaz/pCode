@@ -33,8 +33,8 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double [] res = new double[3];
 			int counter1 = ls.FindMinInterval(f,-10,1,30,ref res);
 			int counter2 = ls.FindMinimumViaGoldenSection(f,res[0],res[1],res[2],counterMax,eps,ref xmin);
-			Assert.IsTrue(counter2<counterMax);
-			Assert.IsTrue (System.Math.Abs(xmin-realXmin)<eps);
+			Assert.That(counter2<counterMax);
+			Assert.That (System.Math.Abs(xmin-realXmin)<eps);
 		}
 
 		/// <summary>
@@ -52,8 +52,8 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			LineSearch ls = new LineSearch();
 			TestFunction1 f = new TestFunction1();
 			int counter = ls.FindMinimumViaGoldenSection(f,1,4,5,counterMax,eps,ref xmin);
-			Assert.IsTrue(counter<counterMax);
-			Assert.IsTrue (System.Math.Abs(xmin-realXmin)<eps);
+			Assert.That(counter<counterMax);
+			Assert.That (System.Math.Abs(xmin-realXmin)<eps);
 
 		}
 
@@ -72,8 +72,8 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double [] res = new double[3];
 			int counter1 = ls.FindMinInterval(f,-10,1,30,ref res);
 			int counter2 = ls.FindMinimumViaGoldenSection(f,res[0],res[1],res[2],counterMax,eps, ref xmin);
-			Assert.IsTrue(counter2<counterMax);
-			Assert.IsTrue (System.Math.Abs(xmin-realXmin)<eps);
+			Assert.That(counter2<counterMax);
+			Assert.That (System.Math.Abs(xmin-realXmin)<eps);
 		}
 
 		/// <summary>
@@ -92,8 +92,8 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] res = new double[3];
 			int counter1 = ls.FindMinInterval(f,1000,1,30,ref res);
 			int counter2 = ls.FindMinimumViaGoldenSection(f,res[0],res[1],res[2],counterMax,eps, ref xmin);
-			Assert.IsTrue(counter2<counterMax);
-			Assert.IsTrue (System.Math.Abs(xmin-realXmin)<eps);
+			Assert.That(counter2<counterMax);
+			Assert.That (System.Math.Abs(xmin-realXmin)<eps);
 		}
 
 	}

@@ -44,7 +44,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 				int dim = f.Dimension;
 				DFP alg = new DFP(dim, vector, f, step, eps, itMax);
 				alg.FindMinimum();
-				Assert.IsTrue(Diff(expVector,alg.Minimum,dim)<rEps);
+				Assert.That(Diff(expVector,alg.Minimum,dim)<rEps);
 			}
 
 			[Test()]
@@ -60,7 +60,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 				int dim = f.Dimension;
 				BFGS alg = new BFGS(dim, vector, f, step, eps, itMax);
 				alg.FindMinimum();
-				Assert.IsTrue(Diff(expVector,alg.Minimum,dim)<rEps);
+				Assert.That(Diff(expVector,alg.Minimum,dim)<rEps);
 			}
 
 
@@ -77,7 +77,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 				int dim = f.Dimension;
 				DFP alg = new DFP(dim, vector, f, step, eps, itMax);
 				alg.FindMinimum();
-				Assert.IsTrue(Diff(expVector,alg.Minimum,dim)<rEps);
+				Assert.That(Diff(expVector,alg.Minimum,dim)<rEps);
 			}
 
 			[Test()]
@@ -93,7 +93,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 				int dim = f.Dimension;
 				BFGS alg = new BFGS(dim,vector,f,step,eps,itMax);
 				alg.FindMinimum();
-				Assert.IsTrue(Diff(expVector,alg.Minimum,dim)<rEps);
+				Assert.That(Diff(expVector,alg.Minimum,dim)<rEps);
 			}
 
 
@@ -110,7 +110,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 				int dim = f.Dimension;
 				DFP alg = new DFP(dim,vector,f,step,eps,itMax);
 				alg.FindMinimum();
-				Assert.IsTrue(Diff(expVector,alg.Minimum,dim)<rEps);
+				Assert.That(Diff(expVector,alg.Minimum,dim)<rEps);
 			}
 
 			[Test()]
@@ -126,7 +126,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 				int dim = f.Dimension;
 				BFGS alg = new BFGS(dim,vector,f,step,eps,itMax);
 				alg.FindMinimum();
-				Assert.IsTrue(Diff(expVector,alg.Minimum,dim)<rEps);
+				Assert.That(Diff(expVector,alg.Minimum,dim)<rEps);
 			}
 
 		}

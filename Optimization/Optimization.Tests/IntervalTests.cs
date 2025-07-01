@@ -32,8 +32,8 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double bVal = f.GetVal(res[1]);
 			double cVal = f.GetVal(res[2]);
 
-			Assert.IsTrue(counter<maxCount);
-			Assert.IsTrue((aVal>bVal)&&(cVal>bVal));
+			Assert.That(counter<maxCount);
+			Assert.That((aVal>bVal)&&(cVal>bVal));
 
 		}
 
@@ -52,8 +52,8 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double bVal = f.GetVal(res[1]);
 			double cVal = f.GetVal(res[2]);
 
-			Assert.IsTrue(counter<maxCount);
-			Assert.IsTrue((aVal>bVal)&&(cVal>bVal));
+			Assert.That(counter<maxCount);
+			Assert.That((aVal>bVal)&&(cVal>bVal));
 
 		}
 
@@ -68,8 +68,8 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double aVal = f.GetVal(res[0]);
 			double bVal = f.GetVal(res[1]);
 			double cVal = f.GetVal(res[2]);
-			Assert.IsTrue(counter<maxCount);
-			Assert.IsTrue((aVal>bVal)&&(cVal>bVal));
+			Assert.That(counter<maxCount);
+			Assert.That((aVal>bVal)&&(cVal>bVal));
 
 		}
 

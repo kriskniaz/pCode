@@ -32,8 +32,8 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] res = new double[3];
 			int counter = ls.FindMinInterval(f,-10,1,maxCount,ref res);
 			counter = ls.FindMinimumViaBrent(f,res[0],res[1],res[2],maxCount,eps, ref xmin);
-			Assert.IsTrue(counter<maxCount);
-			Assert.IsTrue (System.Math.Abs(xmin-realXmin)<eps);
+			Assert.That(counter<maxCount);
+			Assert.That (System.Math.Abs(xmin-realXmin)<eps);
 		}
 
 		/// <summary>
@@ -51,8 +51,8 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			LineSearch ls = new LineSearch();
 			TestFunction1 f = new TestFunction1();
 			int counter = ls.FindMinimumViaBrent(f,1,4,5,maxCount,eps,ref xmin);
-			Assert.IsTrue(counter<maxCount);
-			Assert.IsTrue (System.Math.Abs(xmin-realXmin)<eps);
+			Assert.That(counter<maxCount);
+			Assert.That(System.Math.Abs(xmin-realXmin)<eps);
 
 		}
 
@@ -72,8 +72,8 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] res = new double[3];
 			int counter = ls.FindMinInterval(f,-10,1,30,ref res);
 			counter = ls.FindMinimumViaBrent(f,res[0],res[1],res[2],maxCount,eps, ref xmin);
-			Assert.IsTrue(counter<maxCount);
-			Assert.IsTrue (System.Math.Abs(xmin-realXmin)<eps);
+			Assert.That(counter<maxCount);
+			Assert.That(System.Math.Abs(xmin-realXmin)<eps);
 		}
 
 		/// <summary>
@@ -93,8 +93,8 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] res = new double[3];
 			int counter = ls.FindMinInterval(f,1000,1,30, ref res);
 			counter = ls.FindMinimumViaBrent(f,res[0],res[1],res[2],50,eps, ref xmin);
-			Assert.IsTrue(counter<maxCount);
-			Assert.IsTrue (System.Math.Abs(xmin-realXmin)<eps);
+			Assert.That(counter<maxCount);
+			Assert.That (System.Math.Abs(xmin-realXmin)<eps);
 		}
 
 		/// <summary>
@@ -112,8 +112,8 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] res = new double[3];
 			int counter = ls.FindMinInterval(f,1000,1,30, ref res);
 			counter = ls.FindMinimumViaBrent(f,res[0],res[1],res[2],50,eps,ref xmin);
-			Assert.IsTrue(counter<maxCount);
-			Assert.IsTrue (System.Math.Abs(xmin-realXmin)<eps);
+			Assert.That(counter<maxCount);
+			Assert.That (System.Math.Abs(xmin-realXmin)<eps);
 
 		}
 

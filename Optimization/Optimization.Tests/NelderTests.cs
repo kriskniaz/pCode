@@ -33,7 +33,7 @@ namespace Net.Kniaz.Optimization.NonGradient.Tests
 			Nelder objNelder = new Nelder(_dim,_data,func,_step,_epsilon,_itmax);
 			objNelder.FindMinimum();
 			diff = NumericNet.CalcDiff(_dim,_reference,objNelder.Result);
-			Assert.IsTrue(diff<_realEpsilon);
+			Assert.That(diff<_realEpsilon);
 		}
 
 
@@ -56,7 +56,7 @@ namespace Net.Kniaz.Optimization.NonGradient.Tests
 			Nelder objNelder = new Nelder(_dim,_data,func,_step,_epsilon,_itmax);;
 			objNelder.FindMinimum();
 			diff = NumericNet.CalcDiff(_dim,_reference,objNelder.Result);
-			Assert.IsTrue(diff<_realEpsilon);
+			Assert.That(diff<_realEpsilon);
 		}
 	}
 }

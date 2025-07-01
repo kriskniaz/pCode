@@ -79,7 +79,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] vector = {0,0,0};
 			TestFunction f = new TestFunction();
 			double der = f.GetPartialDerivativeVal(0,0,vector);
-			Assert.IsTrue(System.Math.Abs(tVal-der)<=eps);
+			Assert.That(System.Math.Abs(tVal-der)<=eps);
 		}
 
 		[Test()]
@@ -90,7 +90,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] vector = {0,0,0};
 			TestFunction f = new TestFunction();
 			double der = f.GetPartialDerivativeVal(0,1,vector);
-			Assert.IsTrue(System.Math.Abs(tVal-der)<=eps);
+			Assert.That(System.Math.Abs(tVal-der)<=eps);
 		}
 
 		[Test()]
@@ -101,7 +101,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] vector = {0,0,0};
 			TestFunction f = new TestFunction();
 			double der = f.GetPartialDerivativeVal(0,2,vector);
-			Assert.IsTrue(System.Math.Abs(tVal-der)<=eps);
+			Assert.That(System.Math.Abs(tVal-der)<=eps);
 		}
 
 		[Test()]
@@ -112,7 +112,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] vector = {0,0,0};
 			TestFunction f = new TestFunction();
 			double der = f.GetPartialDerivativeVal(1,0,vector);
-			Assert.IsTrue(System.Math.Abs(tVal-der)<=eps);
+			Assert.That(System.Math.Abs(tVal-der)<=eps);
 		}
 
 		[Test()]
@@ -123,7 +123,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] vector = {0,0,0};
 			TestFunction f = new TestFunction();
 			double der = f.GetPartialDerivativeVal(1,1,vector);
-			Assert.IsTrue(System.Math.Abs(tVal-der)<=eps);
+			Assert.That(System.Math.Abs(tVal-der)<=eps);
 		}
 
 		[Test()]
@@ -134,7 +134,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] vector = {0,0,0};
 			TestFunction f = new TestFunction();
 			double der = f.GetPartialDerivativeVal(1,2,vector);
-			Assert.IsTrue(System.Math.Abs(tVal-der)<=eps);
+			Assert.That(System.Math.Abs(tVal-der)<=eps);
 		}
 
 		[Test()]
@@ -145,7 +145,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] vector = {0,0,0};
 			TestFunction f = new TestFunction();
 			double der = f.GetPartialDerivativeVal(2,0,vector);
-			Assert.IsTrue(System.Math.Abs(tVal-der)<=eps);
+			Assert.That(System.Math.Abs(tVal-der)<=eps);
 		}
 
 		[Test()]
@@ -156,7 +156,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] vector = {0,0,0};
 			TestFunction f = new TestFunction();
 			double der = f.GetPartialDerivativeVal(2,1,vector);
-			Assert.IsTrue(System.Math.Abs(tVal-der)<=eps);
+			Assert.That(System.Math.Abs(tVal-der)<=eps);
 		}
 
 		[Test()]
@@ -167,7 +167,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			double[] vector = {0,0,0};
 			TestFunction f = new TestFunction();
 			double der = f.GetPartialDerivativeVal(2,2,vector);
-			Assert.IsTrue(System.Math.Abs(tVal-der)<=eps);
+			Assert.That(System.Math.Abs(tVal-der)<=eps);
 		}
 
 		[Test()]
@@ -183,7 +183,7 @@ namespace Net.Kniaz.Optimization.QuasiNewton.Tests
 			GeneralMatrix hessian = f.CalculateHessian(vector);
 			for (int i=0;i<3; i++)
 				for (int j=0;j<3; j++)
-					Assert.IsTrue(System.Math.Abs(hessian.GetElement(i,j)-expectedMatrix.GetElement(i,j))<eps);
+					Assert.That(System.Math.Abs(hessian.GetElement(i,j)-expectedMatrix.GetElement(i,j))<eps);
 		}
 
 

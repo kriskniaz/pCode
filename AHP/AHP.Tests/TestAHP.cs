@@ -29,47 +29,51 @@ namespace Net.Kniaz.AHP.Tests
 
 			ps.ComputePriorities(matrix);
 			//should be 0.13900+change
-			Assert.IsTrue(ps.ConsistencyRatio<0.14);
+			Assert.That(ps.ConsistencyRatio<0.14);
 		}
 
 		[Test()]
-		public void TestPriorities()
-		{
-			PrioritiesSelector ps = new PrioritiesSelector();
-			double[][] mat = new double[][]
-								{ 
-									new double[] {1,0.333333333,2,4},
-									new double[] {3,1,5,3},
-									new double[] {0.5,0.2,1,0.3333333333333},
-									new double[] {0.25,0.3333333333333,3,1}
-								};
-			GeneralMatrix matrix = new GeneralMatrix(mat);
+        public void TestPriorities()
+        {
+            PrioritiesSelector ps = new PrioritiesSelector();
+            double[][] mat = new double[][]
+                                {
+                                    new double[] {1,0.333333333,2,4},
+                                    new double[] {3,1,5,3},
+                                    new double[] {0.5,0.2,1,0.3333333333333},
+                                    new double[] {0.25,0.3333333333333,3,1}
+                                };
+            GeneralMatrix matrix = new GeneralMatrix(mat);
 
-			ps.ComputePriorities(matrix);
-			GeneralMatrix pr = ps.CalculatedMatrix;
-			Assert.IsTrue(System.Math.Round(pr.GetElement(0,0),2)==0.26);
-		}
+            ps.ComputePriorities(matrix);
+            GeneralMatrix pr = ps.CalculatedMatrix;
+
+            // Replace the following line:
+            // Assert.IsTrue(System.Math.Round(pr.GetElement(0,0),2)==0.26);
+
+            // With this corrected line:
+            Assert.That(System.Math.Round(pr.GetElement(0, 0), 2), Is.EqualTo(0.26));
+        }
 
 		[Test()]
-		public void TestExpansionUtility()
-		{
-			double[][] mat = new double[][]
-								{ 
-									new double[] {1,2,3,4},
-									new double[] {0,1,2,5},
-									new double[] {0,0,1,5},
-									new double[] {0,0,0,1}
-								};
-			GeneralMatrix oldMatrix = new GeneralMatrix(mat);
+        public void TestExpansionUtility()
+        {
+            double[][] mat = new double[][]
+                                {
+                                    new double[] {1,2,3,4},
+                                    new double[] {0,1,2,5},
+                                    new double[] {0,0,1,5},
+                                    new double[] {0,0,0,1}
+                                };
+            GeneralMatrix oldMatrix = new GeneralMatrix(mat);
 
-			GeneralMatrix newMatrix = AHPModel.ExpandUtility(oldMatrix);
+            GeneralMatrix newMatrix = AHPModel.ExpandUtility(oldMatrix);
 
-			Assert.AreEqual(newMatrix.GetElement(1,0),0.5);
-			double val = 1.0/3.0;
-			Assert.AreEqual(newMatrix.GetElement(2,0),val);
-			Assert.AreEqual(newMatrix.GetElement(3,0),0.25);
-
-		}
+            Assert.That(newMatrix.GetElement(1, 0), Is.EqualTo(0.5));
+            double val = 1.0 / 3.0;
+            Assert.That(newMatrix.GetElement(2, 0), Is.EqualTo(val));
+            Assert.That(newMatrix.GetElement(3, 0), Is.EqualTo(0.25));
+        }
 
 		[Test()]
 		public void TestChoiceMatrix()
@@ -139,8 +143,7 @@ namespace Net.Kniaz.AHP.Tests
 					if (nmat3.GetElement(i,j)!=gmat3.GetElement(i,j))
 						alarm=true;
 
-
-			Assert.IsFalse(alarm);
+			Assert.That(alarm==false);
 
 
 		}
@@ -159,63 +162,62 @@ namespace Net.Kniaz.AHP.Tests
 		/// Also SF is more prefferred than NY
 		/// </summary>
 		[Test()]
-		public void TestVacationSpotSelection()
-		{
-			double[][] criteria = new double[][]
-								{ 
-									new double[] {1,5,0.33333333,1},
-									new double[] {0,1,0.2,0.5},
-									new double[] {0,0,1,3},
-									new double[] {0,0,0,1}
-								};
+        public void TestVacationSpotSelection()
+        {
+            double[][] criteria = new double[][]
+                                {
+                                    new double[] {1,5,0.33333333,1},
+                                    new double[] {0,1,0.2,0.5},
+                                    new double[] {0,0,1,3},
+                                    new double[] {0,0,0,1}
+                                };
 
-			double[][] activitiesChoices = new double[][]
-				{
-					new double[] {1,4,3},
-					new double[] {0,1,2},
-					new double[] {0,0,1}
-				};
+            double[][] activitiesChoices = new double[][]
+                {
+                    new double[] {1,4,3},
+                    new double[] {0,1,2},
+                    new double[] {0,0,1}
+                };
 
-			double[][] nightlifeChoices = new double[][]
-				{
-					new double[] {1,0.5,0.3333333},
-					new double[] {0,1,0.5},
-					new double[] {0,0,1}
-				};
+            double[][] nightlifeChoices = new double[][]
+                {
+                    new double[] {1,0.5,0.3333333},
+                    new double[] {0,1,0.5},
+                    new double[] {0,0,1}
+                };
 
-			double[][] siteseeingChoices = new double[][]
-				{
-					new double[] {1,0.142857,0.2},
-					new double[] {0,1,2},
-					new double[] {0,0,1}
-				};
+            double[][] siteseeingChoices = new double[][]
+                {
+                    new double[] {1,0.142857,0.2},
+                    new double[] {0,1,2},
+                    new double[] {0,0,1}
+                };
 
-			double[][] costChoices = new double[][]
-				{
-					new double[] {1,3,5},
-					new double[] {0,1,2},
-					new double[] {0,0,1}
-				};
+            double[][] costChoices = new double[][]
+                {
+                    new double[] {1,3,5},
+                    new double[] {0,1,2},
+                    new double[] {0,0,1}
+                };
 
-			//4 criteria, 3 choices
-			AHPModel model = new AHPModel(4,3);
-			model.AddCriteria(criteria);
-			model.AddCriterionRatedChoices(0,activitiesChoices);
-			model.AddCriterionRatedChoices(1,nightlifeChoices);
-			model.AddCriterionRatedChoices(2,siteseeingChoices);
-			model.AddCriterionRatedChoices(3,costChoices);
+            //4 criteria, 3 choices
+            AHPModel model = new AHPModel(4, 3);
+            model.AddCriteria(criteria);
+            model.AddCriterionRatedChoices(0, activitiesChoices);
+            model.AddCriterionRatedChoices(1, nightlifeChoices);
+            model.AddCriterionRatedChoices(2, siteseeingChoices);
+            model.AddCriterionRatedChoices(3, costChoices);
 
-			model.CalculateModel();
+            model.CalculateModel();
 
-			GeneralMatrix calcCriteria = model.CalculatedCriteria;
-			GeneralMatrix results = model.ModelResult;
-			GeneralMatrix choices = model.CalculatedChoices;
-			//choices: SF 42%, Orlando31%, NY 27%
-			Assert.AreEqual(31,System.Math.Round(choices.GetElement(0,0)*100,0));
-			Assert.AreEqual(42,System.Math.Round(choices.GetElement(1,0)*100,0));
-			Assert.AreEqual(27,System.Math.Round(choices.GetElement(2,0)*100,0));
-
-		}
+            GeneralMatrix calcCriteria = model.CalculatedCriteria;
+            GeneralMatrix results = model.ModelResult;
+            GeneralMatrix choices = model.CalculatedChoices;
+            //choices: SF 42%, Orlando31%, NY 27%
+            Assert.That(System.Math.Round(choices.GetElement(0, 0) * 100, 0), Is.EqualTo(31));
+            Assert.That(System.Math.Round(choices.GetElement(1, 0) * 100, 0), Is.EqualTo(42));
+            Assert.That(System.Math.Round(choices.GetElement(2, 0) * 100, 0), Is.EqualTo(27));
+        }
 
 		/// <summary>
 		/// AHP model for the computer system with 3 criteria - scalability, maintanablity, reliability
@@ -312,7 +314,7 @@ namespace Net.Kniaz.AHP.Tests
 			model.CalculateModel();
 
 			GeneralMatrix choices = model.CalculatedChoices;
-			Assert.AreEqual(19,System.Math.Round(choices.GetElement(12,0)*100,0));
+			Assert.That(19==System.Math.Round(choices.GetElement(12,0)*100,0));
 
 		}
 

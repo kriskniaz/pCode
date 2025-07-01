@@ -31,7 +31,7 @@ namespace Net.Kniaz.Optimization.NonGradient.Tests
 			Rosenbrock objRosenbrock = new Rosenbrock(_dim, _data, func, _step, _epsilon, _itmax);
 			objRosenbrock.FindMinimum();
 			diff = NumericNet.CalcDiff(_dim,_reference,_data);
-			Assert.IsTrue(diff<_realEpsilon);
+			Assert.That(diff<_realEpsilon);
 		}
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace Net.Kniaz.Optimization.NonGradient.Tests
 			Rosenbrock objRosenbrock = new Rosenbrock(_dim, _data, func, _step, _epsilon, _itmax);
 			objRosenbrock.FindMinimum();
 			diff = NumericNet.CalcDiff(_dim,_reference,_data);
-			Assert.IsTrue(diff<_realEpsilon);
+			Assert.That(diff<_realEpsilon);
 		}
 	}
 }
