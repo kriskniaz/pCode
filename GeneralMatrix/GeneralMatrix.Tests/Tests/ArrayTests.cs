@@ -68,7 +68,7 @@ namespace DotNetMatrix.Tests
 			A = R.Copy();
             Assert.That(A.Norm1(), Is.Not.EqualTo(0.0));
 			A.SubtractEquals(R);
-            Assert.That(A.Subtract(Z).Norm1(), Is.Not.EqualTo(0.0));
+            Assert.That(A.Norm1(), Is.EqualTo(0.0));
         }
 
         [Test()]
