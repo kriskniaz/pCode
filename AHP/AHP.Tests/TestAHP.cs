@@ -2,6 +2,7 @@ using System;
 using NUnit.Framework;
 using DotNetMatrix;
 using Net.Kniaz.AHP;
+using AHP.Tests;
 
 
 namespace Net.Kniaz.AHP.Tests
@@ -164,55 +165,8 @@ namespace Net.Kniaz.AHP.Tests
 		[Test()]
         public void TestVacationSpotSelection()
         {
-            double[][] criteria = new double[][]
-                                {
-                                    new double[] {1,5,0.33333333,1},
-                                    new double[] {0,1,0.2,0.5},
-                                    new double[] {0,0,1,3},
-                                    new double[] {0,0,0,1}
-                                };
-
-            double[][] activitiesChoices = new double[][]
-                {
-                    new double[] {1,4,3},
-                    new double[] {0,1,2},
-                    new double[] {0,0,1}
-                };
-
-            double[][] nightlifeChoices = new double[][]
-                {
-                    new double[] {1,0.5,0.3333333},
-                    new double[] {0,1,0.5},
-                    new double[] {0,0,1}
-                };
-
-            double[][] siteseeingChoices = new double[][]
-                {
-                    new double[] {1,0.142857,0.2},
-                    new double[] {0,1,2},
-                    new double[] {0,0,1}
-                };
-
-            double[][] costChoices = new double[][]
-                {
-                    new double[] {1,3,5},
-                    new double[] {0,1,2},
-                    new double[] {0,0,1}
-                };
-
-            //4 criteria, 3 choices
-            AHPModel model = new AHPModel(4, 3);
-            model.AddCriteria(criteria);
-            model.AddCriterionRatedChoices(0, activitiesChoices);
-            model.AddCriterionRatedChoices(1, nightlifeChoices);
-            model.AddCriterionRatedChoices(2, siteseeingChoices);
-            model.AddCriterionRatedChoices(3, costChoices);
-
-            model.CalculateModel();
-
-            GeneralMatrix calcCriteria = model.CalculatedCriteria;
-            GeneralMatrix results = model.ModelResult;
-            GeneralMatrix choices = model.CalculatedChoices;
+			VacationSelectionData data = new VacationSelectionData();
+            GeneralMatrix choices = data.VacationSpotSelectionUsingArrays();
             //choices: SF 42%, Orlando31%, NY 27%
             Assert.That(System.Math.Round(choices.GetElement(0, 0) * 100, 0), Is.EqualTo(31));
             Assert.That(System.Math.Round(choices.GetElement(1, 0) * 100, 0), Is.EqualTo(42));
