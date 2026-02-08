@@ -80,7 +80,7 @@ namespace AHP.Tests
 
             var modelChoice1 = modelChoice.GetElement(0, 0);
             var modelChoice2 = modelChoice.GetElement(1, 0);
-            var modelChoice3 = modelChoice.GetElement(2,0);
+            var modelChoice3 = modelChoice.GetElement(2,0 );
 
             var arrayChoice1 = arrayChoice.GetElement(0, 0);
             var arrayChoice2 = arrayChoice.GetElement(1, 0);

@@ -120,7 +120,6 @@ namespace Net.Kniaz.AHP
 			set
 			{
 				_criteria = ExpandUtility(value);
-				_criteria=value;
 			}
 		}
 
