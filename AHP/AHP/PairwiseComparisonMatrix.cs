@@ -57,7 +57,7 @@ namespace Net.Kniaz.AHP
             int j = _indexMap[elementId2];
 
             _matrix.SetElement(i, j,value);
-            _matrix.SetElement(j, i,1.0); // Set reciprocal
+            _matrix.SetElement(j, i,1.0 / value); // Set reciprocal
         }
 
         /// <summary>
