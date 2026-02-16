@@ -16,8 +16,21 @@ namespace Net.Kniaz.AHP
         private GeneralMatrix _matrix;
         private List<string> _elementIds;
 
-        public List<string> ElementIds => _elementIds;
-        public int Size => _elementIds.Count;
+        public List<string> ElementIds
+        {
+            get
+            {
+                return this._elementIds;
+            }
+        }
+
+        public int Size
+        {
+            get
+            {
+                return this._elementIds.Count;
+            }
+        }
 
         public PairwiseComparisonMatrix(List<string> elementIds)
         {
