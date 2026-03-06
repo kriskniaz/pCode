@@ -88,5 +88,52 @@ namespace AHP.Tests
 
             Assert.That(System.Math.Round(modelChoice1 * 100, 0), Is.EqualTo(System.Math.Round(arrayChoice1 * 100, 0)));
         }
+
+        [Test()]
+        public void TestCarSelection()
+        {
+            var ahpModel = new AHPObjectModel("Select the best car");
+
+            //criteria
+            ahpModel.Criteria.Add(new Criterion("C1", "Price"));
+            ahpModel.Criteria.Add(new Criterion("C2", "Looks"));
+            ahpModel.Criteria.Add(new Criterion("C3", "Performance"));
+            
+            //alternatices
+            ahpModel.Alternatives.Add(new Alternative("A1", "Alfa Romeo"));
+            ahpModel.Alternatives.Add(new Alternative("A2", "Volvo"));
+            ahpModel.Alternatives.Add(new Alternative("A3", "Toyota"));
+
+            // Initialize comparison matrices
+            ahpModel.InitializeCriteriaComparisons();
+            ahpModel.InitializeAllAlternativeComparisons();
+
+            //criteria comparisons
+            ahpModel.CriteriaComparisons.SetComparison("C1", "C2", 3);
+            ahpModel.CriteriaComparisons.SetComparison("C1", "C3", 5.0);
+            ahpModel.CriteriaComparisons.SetComparison("C2", "C3", 1);
+
+            //alternatives - price
+            ahpModel.AlternativeComparisons["C1"].SetComparison("A1", "A2", 3.0);
+            ahpModel.AlternativeComparisons["C1"].SetComparison("A1", "A3", 1.0/5.0);
+            ahpModel.AlternativeComparisons["C1"].SetComparison("A2", "A3", 1.0/7.0);
+
+            //alternatives - looks
+            ahpModel.AlternativeComparisons["C2"].SetComparison("A1", "A2", 3.0);
+            ahpModel.AlternativeComparisons["C2"].SetComparison("A1", "A3", 9.0);
+            ahpModel.AlternativeComparisons["C2"].SetComparison("A2", "A3", 3.0);
+
+            //alternatives - performance
+            ahpModel.AlternativeComparisons["C3"].SetComparison("A1", "A2", 3.0);
+            ahpModel.AlternativeComparisons["C3"].SetComparison("A1", "A3", 7.0);
+            ahpModel.AlternativeComparisons["C3"].SetComparison("A2", "A3", 3.0);
+
+            ahpModel.CalculateModel();
+
+            GeneralMatrix choices = aHPModel.CalculatedChoices;
+        }
+
     }
+
+
 }
