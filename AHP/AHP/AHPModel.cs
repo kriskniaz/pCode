@@ -165,13 +165,15 @@ namespace Net.Kniaz.AHP
 	
 		public void AddCriteria(GeneralMatrix matrix)
 		{
-			_criteria = ExpandUtility(matrix);
+			// Matrix is already fully expanded (symmetric); skip ExpandUtility
+			_criteria = matrix;
 		}
 
 		public void AddCriteria(double[][] matrix)
 		{
+			// Upper-triangular array input must be expanded first
 			GeneralMatrix newMatrix = new GeneralMatrix(matrix);
-			AddCriteria(newMatrix);
+			_criteria = ExpandUtility(newMatrix);
 		}
 		/// <summary>
 		/// 
@@ -183,17 +185,21 @@ namespace Net.Kniaz.AHP
 			if (criterionId>_nCriteria)
 				throw new ArgumentException("Passed criterion Id greater than numberof criteria");
 
-
 			int col0 = criterionId*_mChoices;
 			int colMax = col0+_mChoices-1;
-			GeneralMatrix newMatrix = (GeneralMatrix)ExpandUtility(matrix).Clone();
+			// Matrix is already fully expanded (symmetric); skip ExpandUtility
+			GeneralMatrix newMatrix = (GeneralMatrix)matrix.Clone();
 			_choiceMatrix.SetMatrix(0,_mChoices-1,col0,colMax,newMatrix);
 		}
 
 		public void AddCriterionRatedChoices(int criterionId, double[][] matrix)
 		{
+			// Upper-triangular array input must be expanded first
 			GeneralMatrix gMatrix = new GeneralMatrix(matrix);
-			AddCriterionRatedChoices(criterionId,gMatrix);
+			int col0 = criterionId*_mChoices;
+			int colMax = col0+_mChoices-1;
+			GeneralMatrix newMatrix = (GeneralMatrix)ExpandUtility(gMatrix).Clone();
+			_choiceMatrix.SetMatrix(0,_mChoices-1,col0,colMax,newMatrix);
 		}
 
 		/// <summary>

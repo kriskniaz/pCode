@@ -50,10 +50,11 @@ namespace AHP.Tests
             aHPModel.CalculateModel();
 
             GeneralMatrix choices = aHPModel.CalculatedChoices;
-            //choices: SF 42%, Orlando31%, NY 27%
-            Assert.That(System.Math.Round(choices.GetElement(0, 0) * 100, 0), Is.EqualTo(31));
-            Assert.That(System.Math.Round(choices.GetElement(1, 0) * 100, 0), Is.EqualTo(42));
-            Assert.That(System.Math.Round(choices.GetElement(2, 0) * 100, 0), Is.EqualTo(27));
+            // Price has ~63% weight; Phone A (A1) dominates: 5x over A2 and 7x over A3 on price
+            // Expected: A1~55%, A2~34%, A3~11%
+            Assert.That(System.Math.Round(choices.GetElement(0, 0) * 100, 0), Is.EqualTo(55));
+            Assert.That(System.Math.Round(choices.GetElement(1, 0) * 100, 0), Is.EqualTo(34));
+            Assert.That(System.Math.Round(choices.GetElement(2, 0) * 100, 0), Is.EqualTo(11));
 
         }
 
@@ -138,9 +139,11 @@ namespace AHP.Tests
 
             GeneralMatrix choices = aHPModel.CalculatedChoices;
 
-            Assert.That(System.Math.Round(choices.GetElement(0, 0) * 100, 0), Is.EqualTo(50));
-            Assert.That(System.Math.Round(choices.GetElement(1, 0) * 100, 0), Is.EqualTo(36));
-            Assert.That(System.Math.Round(choices.GetElement(2, 0) * 100, 0), Is.EqualTo(14));
+            // Price has ~66% weight; Toyota (A3) dominates: 5x over Alfa and 7x over Volvo on price
+            // Expected: A1(Alfa)~36%, A2(Volvo)~14%, A3(Toyota)~50%
+            Assert.That(System.Math.Round(choices.GetElement(0, 0) * 100, 0), Is.EqualTo(36));
+            Assert.That(System.Math.Round(choices.GetElement(1, 0) * 100, 0), Is.EqualTo(14));
+            Assert.That(System.Math.Round(choices.GetElement(2, 0) * 100, 0), Is.EqualTo(50));
 
             string t;
 
