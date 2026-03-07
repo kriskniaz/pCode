@@ -144,9 +144,6 @@ namespace AHP.Tests
             Assert.That(System.Math.Round(choices.GetElement(0, 0) * 100, 0), Is.EqualTo(36));
             Assert.That(System.Math.Round(choices.GetElement(1, 0) * 100, 0), Is.EqualTo(14));
             Assert.That(System.Math.Round(choices.GetElement(2, 0) * 100, 0), Is.EqualTo(50));
-
-            string t;
-
         }
 
     }
